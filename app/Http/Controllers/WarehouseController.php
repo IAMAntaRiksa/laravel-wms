@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\WarehouseImport;
+use App\Models\Inventory;
 use App\Models\Warehouse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use Maatwebsite\Excel\Facades\Excel;
 
 class WarehouseController extends Controller
 {
@@ -114,5 +117,41 @@ class WarehouseController extends Controller
     public function import()
     {
         return view('page.warehouse.import');
+    }
+
+    public function importProcess(Request $request)
+    {
+        $messages = [
+            'warehouse.required' => Lang::get('web.warehouse-required'),
+            'warehouse.file' => Lang::get('web.warehouse-file'),
+            'warehouse.mimes' => Lang::get('web.warehouse-mimes'),
+        ];
+
+        $validator = Validator::make($request->all(), [
+            'warehouse' => 'required|file|mimes:xlsx',
+        ], $messages);
+
+        if ($validator->fails()) {
+            $validator->errors()->add('message', Lang::get('web.upload-failed'));
+            return redirect()->back()->withInput()->withErrors($validator);
+        }
+
+
+        $collection = Excel::toCollection(new WarehouseImport, $request->file('warehouse'));
+
+        foreach ($collection as $rows) {
+            foreach ($rows as $row) {
+                if ($row[0] && $row[0] != 'Name') {
+                    Warehouse::firstOrCreate([
+                        'name' => $row[0],
+                        'code' => $row[1],
+                        'address' => $row[2],
+                    ]);
+                }
+            }
+        }
+
+        Session::flash('message', Lang::get('web.import-success'));
+        return redirect()->route('warehouse.index');
     }
 }

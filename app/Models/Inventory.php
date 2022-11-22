@@ -15,4 +15,14 @@ class Inventory extends Model
         'qty',
         'pending',
     ];
+
+    public function warehouse()
+    {
+        return $this->belongsTo(Warehouse::class, 'warehouse_id');
+    }
+
+    public function item()
+    {
+        return $this->belongsTo(Item::class, 'item_id');
+    }
 }

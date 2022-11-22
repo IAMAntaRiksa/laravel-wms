@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogisticController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SerialNumberController;
 use App\Http\Controllers\UserController;
@@ -41,5 +43,11 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::resource('/warehouse', WarehouseController::class, ['except' => ['show']]);
     Route::get('/warehouse/import', [WarehouseController::class, 'import'])->name('warehouse.import');
+    Route::post('/warehouse/import', [WarehouseController::class, 'importProcess'])->name('warehouse.importProcess');
+
+    Route::resource('/inventory', InventoryController::class, ['except' => ['show']]);
+
+
+    Route::resource('/logistic', LogisticController::class, ['except' => ['show']]);
     Route::get('logout', [LoginController::class, 'logout'])->name('logout.index');
 });

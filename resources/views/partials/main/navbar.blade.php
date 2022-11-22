@@ -145,7 +145,7 @@
                 @endcan
                 @can('inventory-management')
                 <li class="nav-item {{ Route::is('inventory.index') ? 'active' : '' }}">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{route('inventory.index')}}">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                             <!-- Download SVG icon from http://tabler-icons.io/i/home -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-text"
@@ -242,7 +242,7 @@
                 @endcan
                 @can('logistic-management')
                 <li class="nav-item {{ Route::is('logistic.index') ? 'active' : '' }}">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{route('logistic.index')}}">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                             <!-- Download SVG icon from http://tabler-icons.io/i/home -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-truck"

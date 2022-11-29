@@ -22,9 +22,9 @@ return new class extends Migration
             $table->unsignedBigInteger('warehouse_id');
             $table->enum('type', ['main', 'area'])->default('area');
             $table->timestamps();
-            $table->string('month');
 
-            // $table->index('month');
+
+            $table->index('month');
 
 
             // Relationship Warehouse

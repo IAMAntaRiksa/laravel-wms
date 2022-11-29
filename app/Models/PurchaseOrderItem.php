@@ -21,4 +21,9 @@ class PurchaseOrderItem extends Model
         'created_at',
         'updated_at',
     ];
+
+    public function detail()
+    {
+        return $this->belongsTo(Item::class, 'item_id');
+    }
 }

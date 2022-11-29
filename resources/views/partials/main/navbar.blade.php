@@ -217,7 +217,7 @@
                             <div class="dropdown-menu-column">
                                 <div class="dropend">
                                     @can('purchase-order-management')
-                                    <a href="#"
+                                    <a href="{{route('purchase-order.index')}}"
                                         class="dropdown-item {{ Route::is('transfer-stock.purchase-order.index') ? 'active' : '' }}">Purchase
                                         Order</a>
                                     @endcan

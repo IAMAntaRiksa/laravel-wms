@@ -96,7 +96,8 @@ class ItemController extends Controller
 
     public function destroy(Item $item)
     {
-        SerialNumber::with('items')->where('item_id', $item->id)->delete();
+        SerialNumber::with('item')->where('item_id', $item->id)->delete();
+
         try {
             $item->delete();
         } catch (\Exception $errors) {

@@ -5,6 +5,7 @@ use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogisticController;
+use App\Http\Controllers\PurchaseOrderController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SerialNumberController;
 use App\Http\Controllers\UserController;
@@ -50,4 +51,6 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::resource('/logistic', LogisticController::class, ['except' => ['show']]);
     Route::get('logout', [LoginController::class, 'logout'])->name('logout.index');
+
+    Route::resource('purchase-order', PurchaseOrderController::class, ['except' => ['show']])->names('purchase-order');
 });

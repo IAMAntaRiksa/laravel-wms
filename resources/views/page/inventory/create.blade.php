@@ -29,7 +29,7 @@
                 <div class="mb-3">
                     <div class="form-label">Warehouse</div>
                     <select name="warehouse_id" id="select-warehouse">
-                        <option></option>
+                        <option></option>   
                         @foreach($warehouses as $warehouse)
                         <option value="{{ $warehouse->id }}"
                             {{ old('warehouse_id') == $warehouse->id ? 'selected':'' }}>{{ $warehouse->code }} -

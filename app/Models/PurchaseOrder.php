@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -31,5 +32,12 @@ class PurchaseOrder extends Model
     public function warehouse()
     {
         return $this->belongsTo(Warehouse::class, 'warehouse_id');
+    }
+
+    protected function pdf(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => asset('/storage/pdf/purchase-order/' . $value),
+        );
     }
 }

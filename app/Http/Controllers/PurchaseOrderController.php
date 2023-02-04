@@ -60,7 +60,7 @@ class PurchaseOrderController extends Controller
         }
 
         $pdf = $request->file('file');
-        $pdf->storeAs('public/pdf/purchase-order/', $pdf->hashName());
+        $pdf->storeAs('/public/pdf/purchase-order/', $pdf->hashName());
 
         PurchaseOrder::create([
             'order_reference_no' => $request->order_reference_no,

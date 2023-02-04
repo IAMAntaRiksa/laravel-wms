@@ -53,7 +53,6 @@
                     <tbody>
                         @foreach($datas as $key=>$data)
                         <tr>
-
                             <td><span class="text-muted">
                                     {{ ++$key +($datas->currentPage()-1) * $datas->perPage() }}</span></td>
                             <td>{{ $data->order_reference_no }}</td>
@@ -72,7 +71,7 @@
                                 <span class="badge btn-{{ $check }}">{{ $data->is_open == 1 ? 'Yes' : 'No' }}</span>
                             </td>
                             <td class="text-center">
-                                <a href="{{ $data->file_url }}" type="button" class="btn btn-info btn-sm"
+                                <a href="{{ $data->file_path }}" type="button" class="btn btn-info btn-sm"
                                     target="_blank">
                                     <svg xmlns="http://www.w3.org/2000/svg"
                                         class="icon icon-tabler icon-tabler-file-text" width="24" height="24"
